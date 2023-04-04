@@ -1,6 +1,5 @@
 import unittest
-from snake import Snake
-from food import Food
+from main import create_snake, update_snake
 import turtle
 
 
@@ -12,19 +11,24 @@ class TestSnake(unittest.TestCase):
         self.height = 600
         self.screen.setup(width=self.width, height=self.height)
         self.screen.bgcolor("black")
-        self.screen.title("Python Snake")
-        self.food = Food()
-        self.snake_list = [(0, 0), (-20, 0), (-40, 0)]
-
-    def test_update_snake(self):
-        Snake(self.width, self.height, self.snake_list, self.food).update_snake((20, 0))
-        self.assertEqual(len(self.snake_list), 4)
 
     def test_create_snake(self):
-        self.assertEqual(len(Snake(self.width, self.height, [], self.food).create_snake()), 3)
+        snake_list = create_snake(length=3)
+        self.assertEqual(len(snake_list), 3)
+        for turtle_ in snake_list:
+            self.assertEqual(turtle_.color()[0], "white")
+
+    def test_update_snake(self):
+        start_pos = (-20, 0)
+        snake_list = create_snake(length=3)
+        update_snake(snake_list, start_pos)
+        self.assertEqual(len(snake_list), 4)
+        self.assertEqual(snake_list[-1].position(), start_pos)
+        self.assertEqual(snake_list[-1].color()[0], "white")
 
     def tearDown(self):
         self.screen.bye()
+
 
 if __name__ == '__main__':
     unittest.main()
