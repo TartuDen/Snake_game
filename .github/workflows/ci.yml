@@ -1,1 +1,10 @@
+name: snake-game
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+    - turtle
+    - pyyaml
 
