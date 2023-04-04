@@ -1,15 +1,10 @@
-import math
-import turtle
 import time
-from food import Food
 
 class Snake():
     def __init__(self,set_width,set_height,snake,food):
         self.set_width=set_width
         self.set_height=set_height
         self.food=food
-        print(self.food.food.position())
-
         self.snake=snake  
     
     def move_forward(self):
@@ -111,7 +106,6 @@ class Snake():
         x,y=self.food.food.position()
         marg=10
         if abs(pos[0]-x)<=marg and abs(pos[1]-y)<=marg:
-            print("......... the snake found food")
             return(True)
         else:
             return(False)

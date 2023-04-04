@@ -39,15 +39,15 @@ def update_snake(pos):
     for i in snake_list:
         temp.append(i)
     s=turtle.Turtle()
+    s.hideturtle()
     s.penup()
     s.shape("square")
     s.color("white")
     s.goto(pos)
+    s.showturtle()
     temp.append(s)
     
     snake_list=temp
-    print(".......... the  snake is updated", snake_list)
-
 
 
 
@@ -65,12 +65,10 @@ while True:
         turtle.onkey(snake_.move_down, "Down")
         turtle.onkey(snake_.move_backwards, "Left")
     else:
-        print(".......... we found something")
         food_.food.hideturtle()
         food_.food.clear()
         food_=Food()
         update_snake(resp_from_snake)
-
 screen.exitonclick()
 
 
