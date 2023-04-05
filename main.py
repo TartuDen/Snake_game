@@ -19,7 +19,7 @@ turtle.listen()
 
 
 
-def create_snake(length=3):
+def create_snake(length=10):
     temp=[]
     start_pos=(0-len(temp)*20,0)
     for i in range(length):

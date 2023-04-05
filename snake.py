@@ -96,6 +96,8 @@ class Snake():
                     return("wall")
                 if self.consume_the_food(pos):
                     return(pos)
+                if self.catches_its_tail(pos,pos_list):
+                    return("wall")
             else:
                 pos=pos_list[idx-1]
                 s.speed("fastest")
@@ -115,6 +117,16 @@ class Snake():
             return(True)
         else:
             return(False)
+            
+    def catches_its_tail(self, pos, body_of_snake):
+        marg=5
+        for idx,elements in enumerate(body_of_snake):
+            if idx>1:
+                if abs(pos[0]-elements[0])<=marg and abs(pos[1]-elements[1])<=marg:
+                    return(True)
+                else:
+                    return(False)
+
 
 
 
