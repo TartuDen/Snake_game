@@ -96,7 +96,7 @@ class Snake():
                     return("wall")
                 if self.consume_the_food(pos):
                     return(pos)
-                if self.catches_its_tail(pos,pos_list):
+                if self.catches_its_tail(pos):
                     return("wall")
             else:
                 pos=pos_list[idx-1]
@@ -118,14 +118,17 @@ class Snake():
         else:
             return(False)
             
-    def catches_its_tail(self, pos, body_of_snake):
-        marg=5
-        for idx,elements in enumerate(body_of_snake):
-            if idx>1:
-                if abs(pos[0]-elements[0])<=marg and abs(pos[1]-elements[1])<=marg:
-                    return(True)
-                else:
-                    return(False)
+    def catches_its_tail(self, first_element_pos):
+        marg=0
+        for idx,elements in enumerate(self.snake):
+            pos_element=elements.position()
+            print("here:", idx,first_element_pos, pos_element)
+            if idx>3:
+                    if first_element_pos[0] and pos_element[0]:
+                        if abs(first_element_pos[0]-pos_element[0])==marg and abs(first_element_pos[1]-pos_element[1])==marg:
+                            print("...........here:", idx,first_element_pos, pos_element)
+                            return(True)
+        return(False)
 
 
 
