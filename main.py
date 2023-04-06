@@ -2,6 +2,7 @@ from snake import Snake
 from food import Food
 import turtle
 from food import Food
+from score import Score
 
 
 
@@ -12,6 +13,7 @@ screen.setup(width=set_width, height=set_height)
 screen.bgcolor("black")
 screen.title("Python Snake")
 food_=Food()
+score=Score()
 
 
 
@@ -19,7 +21,7 @@ turtle.listen()
 
 
 
-def create_snake(length=10):
+def create_snake(length=3):
     temp=[]
     start_pos=(0-len(temp)*20,0)
     for i in range(length):
@@ -46,8 +48,10 @@ def update_snake(pos):
     s.goto(pos)
     s.showturtle()
     temp.append(s)
-    
     snake_list=temp
+    score.adding_to_score()
+    current_score=score.game_score
+    print("current score is: ",current_score)
 
 
 
@@ -55,7 +59,7 @@ def update_snake(pos):
 while True:
     snake_=Snake(set_width,set_height,snake_list,food_)
     resp_from_snake=snake_.move_constant()
-    if resp_from_snake == "wall":
+    if resp_from_snake == "wall/tail":
         print("GAME OVER!")
         break
     elif resp_from_snake==False: 

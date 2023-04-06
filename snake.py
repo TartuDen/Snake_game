@@ -93,11 +93,11 @@ class Snake():
                 elif heading == 270:
                     s.goto(pos[0],pos[1]-20)
                 if self.hit_the_wall(pos):
-                    return("wall")
+                    return("wall/tail")
                 if self.consume_the_food(pos):
                     return(pos)
                 if self.catches_its_tail(pos):
-                    return("wall")
+                    return("wall/tail")
             else:
                 pos=pos_list[idx-1]
                 s.speed("fastest")
@@ -122,11 +122,11 @@ class Snake():
         marg=0
         for idx,elements in enumerate(self.snake):
             pos_element=elements.position()
-            print("here:", idx,first_element_pos, pos_element)
+            # print("here:", idx,first_element_pos, pos_element)
             if idx>3:
                     if first_element_pos[0] and pos_element[0]:
                         if abs(first_element_pos[0]-pos_element[0])==marg and abs(first_element_pos[1]-pos_element[1])==marg:
-                            print("...........here:", idx,first_element_pos, pos_element)
+                            # print("...........here:", idx,first_element_pos, pos_element)
                             return(True)
         return(False)
 
