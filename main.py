@@ -18,7 +18,20 @@ score=Score()
 
 
 turtle.listen()
-
+def pen_score(score=0):
+    # Pen
+    pen = turtle.Turtle()
+    pen.hideturtle()
+    pen.speed(0)
+    pen.shape("square")
+    pen.color("white")
+    pen.penup()
+    
+    pen.goto(0, 260)
+    pen.write(f"Score: {score}", align="center",
+            font=("Courier", 24, "normal"))
+    return(pen)
+pen=pen_score()
 
 
 def create_snake(length=3):
@@ -36,6 +49,7 @@ def create_snake(length=3):
 snake_list=(create_snake())
 
 def update_snake(pos):
+    global pen
     global snake_list
     temp=[]
     for i in snake_list:
@@ -51,12 +65,14 @@ def update_snake(pos):
     snake_list=temp
     score.adding_to_score()
     current_score=score.game_score
-    print("current score is: ",current_score)
-
+    pen.clear()
+    pen.hideturtle()
+    pen=pen_score(current_score)
 
 
 
 while True:
+    
     snake_=Snake(set_width,set_height,snake_list,food_)
     resp_from_snake=snake_.move_constant()
     if resp_from_snake == "wall/tail":
