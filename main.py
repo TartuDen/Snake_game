@@ -12,6 +12,7 @@ set_height=600
 screen.setup(width=set_width, height=set_height)
 screen.bgcolor("black")
 screen.title("Python Snake")
+
 food_=Food()
 score=Score()
 
@@ -65,6 +66,7 @@ def update_snake(pos):
     snake_list=temp
     score.adding_to_score()
     current_score=score.game_score
+
     pen.clear()
     pen.hideturtle()
     pen=pen_score(current_score)
