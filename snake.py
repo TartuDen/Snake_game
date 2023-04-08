@@ -1,11 +1,13 @@
 import time
 
 class Snake():
-    def __init__(self,set_width,set_height,snake,food):
+    def __init__(self,set_width,set_height,snake,food,screen):
         self.set_width=set_width
         self.set_height=set_height
         self.food=food
         self.snake=snake  
+        self.screen=screen
+
     
     def move_forward(self):
         pos_list=[]
@@ -76,7 +78,7 @@ class Snake():
 
 
     def move_constant(self):
-        speed=0.0
+        speed=0.03
         pos_list=[]
         for idx,s in enumerate(self.snake):
             time.sleep(speed)
@@ -122,11 +124,9 @@ class Snake():
         marg=0
         for idx,elements in enumerate(self.snake):
             pos_element=elements.position()
-            # print("here:", idx,first_element_pos, pos_element)
             if idx>3:
                     if first_element_pos[0] and pos_element[0]:
                         if abs(first_element_pos[0]-pos_element[0])==marg and abs(first_element_pos[1]-pos_element[1])==marg:
-                            # print("...........here:", idx,first_element_pos, pos_element)
                             return(True)
         return(False)
 

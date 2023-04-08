@@ -12,9 +12,10 @@ set_height=600
 screen.setup(width=set_width, height=set_height)
 screen.bgcolor("black")
 screen.title("Python Snake")
-
+screen.tracer(0)
 food_=Food()
 score=Score()
+
 
 
 
@@ -49,6 +50,7 @@ def create_snake(length=3):
 
 snake_list=(create_snake())
 
+
 def update_snake(pos):
     global pen
     global snake_list
@@ -73,15 +75,14 @@ def update_snake(pos):
 
 
 
-while True:
-    
-    snake_=Snake(set_width,set_height,snake_list,food_)
+while True: 
+    screen.update()
+    snake_=Snake(set_width,set_height,snake_list,food_,screen)
     resp_from_snake=snake_.move_constant()
     if resp_from_snake == "wall/tail":
         print("GAME OVER!")
         break
     elif resp_from_snake==False: 
-        screen.update()
         turtle.onkey(snake_.move_forward, "Right")
         turtle.onkey(snake_.move_up, "Up")
         turtle.onkey(snake_.move_down, "Down")
